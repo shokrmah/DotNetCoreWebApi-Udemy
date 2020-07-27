@@ -20,6 +20,7 @@ namespace BookAPI.Entity
         [Required]
         [MaxLength(50, ErrorMessage = "Last Name should be less than 50 characters")]
         public string LastName { get; set; }
+        public int CountryId { get; set; }
         public virtual Country Country { get; set; }
         public virtual ICollection<BookAuthor> BookAuthors { get; set; }
     }

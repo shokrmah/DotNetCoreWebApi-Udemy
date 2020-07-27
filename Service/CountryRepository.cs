@@ -1,4 +1,5 @@
 ﻿using BookAPI.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,8 @@ namespace BookAPI.Service
         }
         public Country GetCountryByAuthorId(int authorId)
         {
-            AuthorRepsoitory authorRepsoitory = new AuthorRepsoitory(BookDbContext);
-            Author author = authorRepsoitory.GetById(authorId);
+            Author author = BookDbContext.Authors.Include(c=> c.Country).FirstOrDefault(a => a.Id == authorId);
+     
             return (author != null) ? author.Country : null;
     
         }

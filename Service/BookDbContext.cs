@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace BookAPI.Service
 {
     public class BookDbContext : DbContext
@@ -51,7 +52,9 @@ namespace BookAPI.Service
                 .WithMany(BookAuthor => BookAuthor.BookAuthors)
                 .HasForeignKey(book => book.BookId);
 
-
+            modelBuilder.Entity<Country>()
+                .HasMany(c => c.Authors)
+                .WithOne(a => a.Country);
         }
     }
 }
